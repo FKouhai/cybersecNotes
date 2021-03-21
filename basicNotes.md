@@ -77,3 +77,14 @@ Example
 sudo less file.log
 !/bin/sh
 
+#GTFOs bin with python
+
+In order to get a privileged shell with python (only if it has the suid set) we can run
+
+python -c 'import os; os.system("/bin/sh")'
+
+#Stable shell with pty
+
+When we stabblish the first shell with nc it tends not to have a pty which for some porcesses it can be stressful
+
+to solve that you can run this python adhoc command python -c 'import pty; pty.spawn("/bin/bash")' which gets you a tty that lets you freely run all the commands you need without prompting any error nor warning about not having a tty
